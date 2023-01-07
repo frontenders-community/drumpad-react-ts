@@ -1,0 +1,53 @@
+@use "../../scss/variables" as *;
+
+.pad {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: $dark-grey;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  border-radius: $border-radius;
+
+  .pad-item {
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+
+    &.green {
+      background-image: radial-gradient(
+        rgba(var(--green), 1),
+        rgba(var(--green), 0.6)
+      );
+    }
+
+    &.yellow {
+      background-image: radial-gradient(
+        rgba(var(--yellow), 1),
+        rgba(var(--yellow), 0.6)
+      );
+    }
+    &.blue {
+      background-image: radial-gradient(
+        rgba(var(--blue), 1),
+        rgba(var(--blue), 0.6)
+      );
+    }
+
+    &.pink {
+      background-image: radial-gradient(
+        rgba(var(--pink), 1),
+        rgba(var(--pink), 0.6)
+      );
+    }
+
+    &.red {
+      background-image: radial-gradient(
+        rgba(var(--red), 1),
+        rgba(var(--red), 0.6)
+      );
+    }
+  }
+}
