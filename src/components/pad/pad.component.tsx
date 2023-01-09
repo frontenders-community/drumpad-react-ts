@@ -1,32 +1,24 @@
 import "./pad.styles.scss";
+import sounds from "../../data";
+import { Sound } from "../../models";
+import { ReactNode } from "react";
 
 function Pad() {
-  const playAudio = () => {
-    new Audio("../../assets/audio/yamaha-rm50-clap.webm").play();
+  const playAudio = (soundName: string) => {
+    new Audio(`../../assets/audio/${soundName}.webm`).play();
   };
 
-  return (
-    <div className="pad">
-      <div className="pad-item green" onClick={() => playAudio()}>
-        {/* <audio src="../assets/audio/yamaha-rm50-clap.webm"></audio> */}
-      </div>
-      <div className="pad-item blue">item</div>
-      <div className="pad-item yellow">item</div>
-      <div className="pad-item red">item</div>
-      <div className="pad-item pink">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-      <div className="pad-item">item</div>
-    </div>
+  const soundsElements: Array<ReactNode> = sounds.map(
+    (sound: Sound, index: number) => (
+      <div
+        key={index}
+        className="pad-item green"
+        onClick={() => playAudio(sound.name)}
+      ></div>
+    )
   );
+
+  return <div className="pad">{soundsElements}</div>;
 }
 
 export default Pad;
