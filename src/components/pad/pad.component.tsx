@@ -1,21 +1,40 @@
 import "./pad.styles.scss";
-import sounds from "../../data";
 import { Sound } from "../../models";
-import { ReactNode } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
-function Pad() {
-  const types = new Set(sounds.map((sound: Sound) => sound.type));
+type PadProps = {
+  sounds: Array<Sound>;
+  padClick: (padId: number) => void;
+};
+
+function Pad({ sounds, padClick }: PadProps) {
   const classes = ["green", "yellow", "blue", "pink", "red"];
-  const typesClassesMap = new Map();
-  types.forEach((type) => {
-    typesClassesMap.set(
-      type,
-      classes[Math.floor(Math.random() * classes.length)]
-    );
-  });
+  const [typesClassesMap, setTypesClassesMap]: [
+    Map<string, string>,
+    Dispatch<SetStateAction<Map<string, string>>>
+  ] = useState(new Map());
 
-  const playAudio = (soundName: string) => {
+  useEffect(() => {
+    const types = new Set(sounds.map((sound: Sound) => sound.type));
+    const typesClasses = new Map();
+    types.forEach((type) => {
+      typesClasses.set(
+        type,
+        classes[Math.floor(Math.random() * classes.length)]
+      );
+    });
+    setTypesClassesMap(typesClasses);
+  }, []);
+
+  const playAudio = (soundName: string, index: number) => {
     new Audio(`../../assets/audio/${soundName}.webm`).play();
+    padClick(index);
   };
 
   const soundsElements: Array<ReactNode> = sounds.map(
@@ -23,7 +42,7 @@ function Pad() {
       <div
         key={index}
         className={`pad-item green ${typesClassesMap.get(sound.type)}`}
-        onClick={() => playAudio(sound.name)}
+        onClick={() => playAudio(sound.name, index)}
       ></div>
     )
   );

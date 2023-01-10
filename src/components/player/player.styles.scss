@@ -1,0 +1,58 @@
+@use "../../scss/variables" as *;
+
+.player {
+  width: 100%;
+  padding: 0.5rem 2rem 2rem;
+  background-color: $dark-grey;
+  border-radius: $border-radius;
+  color: $light-grey;
+
+  .title {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+    .action-button {
+      width: 3rem;
+      height: 3rem;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      border-color: $text;
+      flex-shrink: 0;
+
+      i {
+        font-size: 1.5rem;
+        color: $text;
+
+        &.recording {
+          color: red;
+          animation: pulse-animation 2s infinite;
+        }
+
+        &.playing {
+          color: green;
+        }
+      }
+    }
+  }
+
+  .record-message {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
