@@ -29,3 +29,8 @@ Partite con una struttura a blocchi che definisca il vostro layout (hint: flex o
 
 HTML, CSS/SASS, React oppure JS plain.
 No librerie CSS.
+
+### Preview
+
+![desktop](screenshot-desktop.png)
+![mobile](screenshot-mobile.png)
