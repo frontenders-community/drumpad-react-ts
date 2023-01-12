@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+#Frontenders Community
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Challenge #5 - Drum Pad
 
-## Available Scripts
+In questa challenge andiamo a creare il drum pad che riproduce un suono deiverso della batteria al click su ogni tasto. Oltre a suonare, l'utente potrà registrare la sequenza dei tasti clickati e riprodurla. Non si tratta della registrazione audio, ma solo della sequenza.
+Ogni suono appartiene ad una tipologia, quindi possiamo colorare i tasti in base a quest'ultima per rendere l'app più bella.
 
-In the project directory, you can run:
+Il layout è abbastanza semplice, ma deve essere realizzato come una web app e inoltre deve essere responsive.
 
-### `npm start`
+### Starter Kit
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Nello starter kit troverte una cartella assets:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **sounds**: qui troverete i suoni da riprodurre al click dei tasti (credits: https://plays.org/virtu-drum-pads/)
+- **data.js**: array js che contiene i dati di suoni
 
-### `npm test`
+### Consigli
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Partite con una struttura a blocchi che definisca il vostro layout (hint: flex o grid qui possono salvare diverse ore di lavoro). Una volta completato il layout iniziate a ragionare sull'implementazione di diversi funzionalità. Partite con la gestione del click sui tasti del drum pad e dopo procedere all'implementazione del player.
 
-### `npm run build`
+**Font**: Roboto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Bonus
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Provate a creare il layout responsive senza utilizzare le media query
+- Date all'utente la possibilità di scegliere la velocità di riproduzione della sequenza dei suoni
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Tecnologie
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+HTML, CSS/SASS, React oppure JS plain.
+No librerie CSS.

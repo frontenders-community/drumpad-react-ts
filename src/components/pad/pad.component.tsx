@@ -15,10 +15,9 @@ type PadProps = {
 
 function Pad({ sounds, padClick }: PadProps) {
   const classes = ["green", "yellow", "blue", "pink", "red"];
-  const [typesClassesMap, setTypesClassesMap]: [
-    Map<string, string>,
-    Dispatch<SetStateAction<Map<string, string>>>
-  ] = useState(new Map());
+  const [typesClassesMap, setTypesClassesMap] = useState<Map<string, string>>(
+    new Map()
+  );
 
   useEffect(() => {
     const types = new Set(sounds.map((sound: Sound) => sound.type));

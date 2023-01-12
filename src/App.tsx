@@ -6,18 +6,9 @@ import sounds from "./data";
 import { Sound } from "./models";
 
 function App() {
-  const [recording, setRecording]: [
-    boolean,
-    Dispatch<SetStateAction<boolean>>
-  ] = useState(false);
-
-  const [recordSequence, setRecordSequence]: [
-    Array<Sound>,
-    Dispatch<SetStateAction<Array<Sound>>>
-  ] = useState(new Array<Sound>());
-
-  const [playing, setPlaying]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(false);
+  const [recording, setRecording] = useState(false);
+  const [recordSequence, setRecordSequence] = useState<Array<Sound>>([]);
+  const [playing, setPlaying] = useState(false);
 
   function startRecord() {
     setRecording(true);
