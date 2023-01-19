@@ -9,8 +9,12 @@ function App() {
   const [recording, setRecording] = useState(false);
   const [recordSequence, setRecordSequence] = useState<Array<Sound>>([]);
   const [playing, setPlaying] = useState(false);
+  const [currentSoundIndex, setCurrentSoundIndex] = useState<number | null>(
+    null
+  );
 
   function startRecord() {
+    setRecordSequence([]);
     setRecording(true);
   }
 
@@ -24,9 +28,16 @@ function App() {
     }
     recordSequence.forEach((record: Sound, index: number) => {
       setTimeout(() => {
+        const soundIndex = sounds.findIndex(
+          (sound) => sound.name === record.name
+        );
+        setCurrentSoundIndex(soundIndex);
         new Audio(`../../assets/audio/${record.name}.webm`).play();
         if (index === recordSequence.length - 1) {
           setPlaying(false);
+          setTimeout(() => {
+            setCurrentSoundIndex(null);
+          }, index * 500);
         }
       }, index * 500);
     });
@@ -47,7 +58,11 @@ function App() {
       <h2 className="main-title">JS Drum Pad</h2>
       <div className="app">
         <div className="pad-container">
-          <Pad sounds={sounds} padClick={handlePadClick} />
+          <Pad
+            sounds={sounds}
+            padClick={handlePadClick}
+            currentSoundIndex={currentSoundIndex}
+          />
         </div>
         <div className="actions-container">
           <Player

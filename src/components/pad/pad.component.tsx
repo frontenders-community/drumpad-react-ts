@@ -11,9 +11,10 @@ import {
 type PadProps = {
   sounds: Array<Sound>;
   padClick: (padId: number) => void;
+  currentSoundIndex?: number | null;
 };
 
-function Pad({ sounds, padClick }: PadProps) {
+function Pad({ sounds, padClick, currentSoundIndex }: PadProps) {
   const classes = ["green", "yellow", "blue", "pink", "red"];
   const [typesClassesMap, setTypesClassesMap] = useState<Map<string, string>>(
     new Map()
@@ -40,7 +41,9 @@ function Pad({ sounds, padClick }: PadProps) {
     (sound: Sound, index: number) => (
       <div
         key={index}
-        className={`pad-item green ${typesClassesMap.get(sound.type)}`}
+        className={`pad-item green ${typesClassesMap.get(sound.type)} ${
+          currentSoundIndex === index ? "active" : ""
+        }`}
         onClick={() => playAudio(sound.name, index)}
       ></div>
     )
