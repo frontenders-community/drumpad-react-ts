@@ -1,59 +1,63 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useContext } from "react";
+import { AppContext } from "../../reducers";
+import { PlayerState } from "../../reducers/reducer";
 import "./player.styles.scss";
 
-type PlayerProps = {
-  isRecording: boolean;
-  isPlaying: boolean;
-  hasRecord: boolean;
-  startRecord: () => void;
-  stopRecord: () => void;
-  play: () => void;
-  clear: () => void;
-};
+export const Player = () => {
+  const {
+    playerState,
+    StartRecord,
+    StopRecord,
+    StartPlaying,
+    StopPlaying,
+    CancelRecord,
+  } = useContext(AppContext);
 
-function Player({
-  isRecording,
-  isPlaying,
-  hasRecord,
-  startRecord,
-  stopRecord,
-  play,
-  clear,
-}: PlayerProps) {
-  function getRecordMessage(): ReactNode {
-    if (isRecording) {
-      return <p>is recording ...</p>;
-    } else if (isPlaying) {
-      return <p>is playing ...</p>;
-    } else if (hasRecord) {
-      return <p>has one record</p>;
-    } else {
-      return <p>no record yet</p>;
+  const getRecordMessage = (): ReactNode => {
+    switch (playerState) {
+      case PlayerState.IS_RECORDING:
+        return <p>is recording ...</p>;
+      case PlayerState.IS_PLAYING:
+        return <p>is playing ...</p>;
     }
-  }
+  };
+
+  const playingBtnClass = () => {
+    return `fa-solid fa-circle ${
+      playerState == PlayerState.IS_RECORDING ? "recording" : ""
+    }`;
+  };
 
   return (
     <div className="player">
       <h3 className="title">Record</h3>
       <div className="actions">
-        <button className="action-button" onClick={() => startRecord()}>
-          <i
-            className={`fa-solid fa-circle ${isRecording ? "recording" : ""}`}
-          ></i>
+        <button
+          className="action-button"
+          onClick={() => StartRecord && StartRecord()}
+        >
+          <i className={playingBtnClass()}></i>
         </button>
-        <button className="action-button" onClick={() => stopRecord()}>
+        <button
+          className="action-button"
+          onClick={() => StopRecord && StopRecord()}
+        >
           <i className="fa-solid fa-stop"></i>
         </button>
-        <button className="action-button" onClick={() => play()}>
-          <i className={`fa-solid fa-play ${isPlaying ? "playing" : ""}`}></i>
+        <button
+          className="action-button"
+          onClick={() => StartPlaying && StartPlaying()}
+        >
+          <i className={`fa-solid fa-play`}></i>
         </button>
-        <button className="action-button" onClick={() => clear()}>
+        <button
+          className="action-button"
+          onClick={() => CancelRecord && CancelRecord()}
+        >
           <i className="fa-solid fa-xmark"></i>
         </button>
       </div>
       <div className="record-message">{getRecordMessage()}</div>
     </div>
   );
-}
-
-export default Player;
+};

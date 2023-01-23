@@ -31,7 +31,7 @@ export const AppContext = createContext<IAppContext>(initialState);
 export const AppProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(appreducer, initialState);
 
-  const StartRecord = () => {
+  const StartRecord = (): void => {
     dispatch({
       type: "START_RECORD",
     });
@@ -57,7 +57,7 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     });
   };
 
-  const StartPlaying = () => {
+  const StartPlaying = (): void => {
     dispatch({
       type: "START_PLAYING",
     });

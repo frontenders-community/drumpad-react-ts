@@ -1,9 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "./App.scss";
 import { Pad } from "./components/pad/pad.component";
-// import Player from "./components/player/player.component";
-// import sounds from "./data";
-// import { Sound } from "./models";
+import { Player } from "./components/player/player.component";
 import { AppProvider } from "./reducers";
 
 export const App = () => {
@@ -14,6 +12,9 @@ export const App = () => {
         <div className="app">
           <div className="pad-container">
             <Pad />
+          </div>
+          <div className="actions-container">
+            <Player />
           </div>
         </div>
       </div>

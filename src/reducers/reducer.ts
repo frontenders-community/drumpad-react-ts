@@ -31,7 +31,9 @@ export default function reducer(state: AppState, action: PlayerAction) {
     case "CLICK_SOUND": {
       return {
         ...state,
-        soundSequence: [...state.soundSequence, action.payload],
+        ...(state.playerState === PlayerState.IS_RECORDING && {
+          soundSequence: [...state.soundSequence, action.payload],
+        }),
       };
     }
     case "PLAY_SOUND": {
