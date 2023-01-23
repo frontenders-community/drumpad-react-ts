@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./scss/general.scss";
 import "@fortawesome/fontawesome-free/css/fontawesome.css";
 import "@fortawesome/fontawesome-free/css/solid.css";
-import App from "./App";
+import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
