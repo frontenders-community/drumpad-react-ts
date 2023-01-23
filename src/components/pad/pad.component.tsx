@@ -1,27 +1,18 @@
 import "./pad.styles.scss";
 import { Sound } from "../../models";
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
+import { AppContext } from "../../reducers";
 
-type PadProps = {
-  sounds: Array<Sound>;
-  padClick: (padId: number) => void;
-  currentSoundIndex?: number | null;
-};
+export const Pad = () => {
+  const { baseSounds, ClickSound, currentSoundIndex } = useContext(AppContext);
 
-function Pad({ sounds, padClick, currentSoundIndex }: PadProps) {
   const classes = ["green", "yellow", "blue", "pink", "red"];
   const [typesClassesMap, setTypesClassesMap] = useState<Map<string, string>>(
     new Map()
   );
 
   useEffect(() => {
-    const types = new Set(sounds.map((sound: Sound) => sound.type));
+    const types = new Set(baseSounds.map((sound: Sound) => sound.type));
     const typesClasses = new Map();
     types.forEach((type) => {
       typesClasses.set(
@@ -32,24 +23,22 @@ function Pad({ sounds, padClick, currentSoundIndex }: PadProps) {
     setTypesClassesMap(typesClasses);
   }, []);
 
-  const playAudio = (soundName: string, index: number) => {
-    new Audio(`../../assets/audio/${soundName}.webm`).play();
-    padClick(index);
+  const playAudio = (sound: Sound, index: number) => {
+    new Audio(`../../assets/audio/${sound.name}.webm`).play();
+    ClickSound && ClickSound(sound);
   };
 
-  const soundsElements: Array<ReactNode> = sounds.map(
+  const soundsElements: Array<ReactNode> = baseSounds.map(
     (sound: Sound, index: number) => (
       <div
         key={index}
         className={`pad-item green ${typesClassesMap.get(sound.type)} ${
           currentSoundIndex === index ? "active" : ""
         }`}
-        onClick={() => playAudio(sound.name, index)}
+        onClick={() => playAudio(sound, index)}
       ></div>
     )
   );
 
   return <div className="pad">{soundsElements}</div>;
-}
-
-export default Pad;
+};

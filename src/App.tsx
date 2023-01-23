@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "./App.scss";
-import Pad from "./components/pad/pad.component";
-import Player from "./components/player/player.component";
-import sounds from "./data";
-import { Sound } from "./models";
+import { Pad } from "./components/pad/pad.component";
+// import Player from "./components/player/player.component";
+// import sounds from "./data";
+// import { Sound } from "./models";
 import { AppProvider } from "./reducers";
 
 export const App = () => {
