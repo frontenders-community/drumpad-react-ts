@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useContext } from "react";
+import { ReactElement, ReactNode, useContext, useEffect } from "react";
+import { Sound } from "../../models";
 import { AppContext } from "../../reducers";
 import { PlayerState } from "../../reducers/reducer";
 import "./player.styles.scss";
@@ -11,6 +12,9 @@ export const Player = () => {
     StartPlaying,
     StopPlaying,
     CancelRecord,
+    PlaySound,
+    soundSequence,
+    baseSounds,
   } = useContext(AppContext);
 
   const getRecordMessage = (): ReactNode => {
@@ -27,6 +31,33 @@ export const Player = () => {
       playerState == PlayerState.IS_RECORDING ? "recording" : ""
     }`;
   };
+
+  useEffect(() => {
+    console.log('effect');
+    
+    if(playerState == PlayerState.IS_PLAYING) {
+      playRecord();
+    }
+  }, [playerState]);
+
+  function playRecord() {
+        soundSequence.forEach((record: Sound, index: number) => {
+          setTimeout(() => {
+            const soundIndex = baseSounds.findIndex(
+              (sound) => sound.name === record.name
+            );
+            PlaySound && PlaySound(soundIndex);
+            new Audio(`../../assets/audio/${record.name}.webm`).play();
+            if (index === soundSequence.length - 1) {
+              StopPlaying && StopPlaying();
+              setTimeout(() => {
+                PlaySound && PlaySound(null);
+              }, index * 500);
+            }
+          }, index * 500);
+        });
+      }
+  
 
   return (
     <div className="player">

@@ -11,7 +11,7 @@ type ContextActions = {
   StartRecord: () => void;
   StopRecord: () => void;
   ClickSound: (sound: Sound) => void;
-  PlaySound: (index: number) => void;
+  PlaySound: (index: number | null) => void;
   StartPlaying: () => void;
   StopPlaying: () => void;
   CancelRecord: () => void;
@@ -50,7 +50,7 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     });
   };
 
-  const PlaySound = (index: number) => {
+  const PlaySound = (index: number | null) => {
     dispatch({
       type: "PLAY_SOUND",
       payload: index,

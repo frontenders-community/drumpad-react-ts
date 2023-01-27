@@ -17,7 +17,7 @@ export type PlayerAction =
   | { type: "START_RECORD" }
   | { type: "STOP_RECORD" }
   | { type: "CLICK_SOUND"; payload: Sound }
-  | { type: "PLAY_SOUND"; payload: number }
+  | { type: "PLAY_SOUND"; payload: number | null }
   | { type: "START_PLAYING" }
   | { type: "STOP_PLAYING" }
   | { type: "CANCEL_RECORD" };
